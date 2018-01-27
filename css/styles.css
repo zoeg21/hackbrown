@@ -1,1 +1,29 @@
 /*styles*/
+header.masthead{
+	background: none !important;
+}
+
+#myshows{
+	padding-top: calc(3rem + 72px);
+}
+.show{
+	display: inline-block;
+}
+
+.playlist{
+	padding-top: calc(3rem + 72px);
+
+}
+
+input[type=text]{
+	float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 16px;
+}
+
+#search{
+	display: inline-block;
+}
