@@ -20,7 +20,8 @@
             //response object has status field w/ login status
 
             if(response.status === 'connected') {
-               testAPI();
+               window.location = "https://zoeg21.github.io/hackbrown/home.html"
+                testAPI();
             }
             else {
                
@@ -42,7 +43,7 @@
              version          : 'v2.11'
            });
       FB.getLoginStatus(function(response) {
-         statusChangeCAllback(response);
+         statusChangeCallback(response);
      });
    };
 
