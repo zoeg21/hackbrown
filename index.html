@@ -14,7 +14,7 @@
         <div id ="fb-root"></div>
         <script>
   //call this function with results from FB.getLoginStatus()
-        function statusChangeCallback(response) {
+      /*  function statusChangeCallback(response) {
             console.log('statusChangeCallback');
             console.log(response);
             //response object has status field w/ login status
@@ -68,7 +68,7 @@
          document.getElementById('status').innerHTML =
              "Thanks for logging in, " + response.name + "!";
      });
- };
+ };*/
         
     </script>
      <h1> GoodTV </h1>
@@ -113,8 +113,12 @@
            var email = error.email;
            var credential = error.credential;
        });
+       firebase.auth().onAuthStateChanged(function(user) {
+           if(user) {
 
 
+
+       </script>
        
 </body>  
 </html> 
