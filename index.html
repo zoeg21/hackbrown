@@ -122,8 +122,8 @@
        });
                firebase.auth().onAuthStateChanged(user =>{
            if(user) {
-              // var userId = firebase.auth().currentUser.uid;    
-               database().ref().child('users').push(user.uid);
+                var userId = firebase.auth().currentUser.uid;    
+               database().ref().child('users').push().userId;
                window.location = "https://zoeg21.github.io/hackbrown/home.html";
            }
        });
