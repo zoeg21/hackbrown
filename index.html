@@ -8,21 +8,12 @@
    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
    <!--Custom CSS--> 
    <link href="css/styles.css" rel="stylesheet"> 
-
+   <title> GoodTV</title>
     </head> 
     <body>
         <div id ="fb-root"></div>
         <script>
-    (function(d, s, id){
-           var js, fjs = d.getElementsByTagName(s)[0];
-           if (d.getElementById(id)) {return;}
-           js = d.createElement(s); js.id = id;
-           js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=214337852466356&autoLogAppEvents=1';           
-           fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
-    <script>
-        //call this function with results from FB.getLoginStatus()
+  //call this function with results from FB.getLoginStatus()
         function statusChangeCallback(response) {
             console.log('statusChangeCallback');
             console.log(response);
@@ -32,8 +23,8 @@
                testAPI();
             }
             else {
-               //they're aren't logged in
-               document.getElementById('status').innerHTML = 'Please log in.';
+               
+               document.getElementById('status').innerHTML = "Please log in.";
             }
         }
         //function called when person is done w/ login button
@@ -50,43 +41,47 @@
              xfbml            : true,
              version          : 'v2.11'
            });
-        
-     FB.getLoginStatus(function(response) {
+      FB.getLoginStatus(function(response) {
          statusChangeCAllback(response);
      });
-};
+   };
 
-  
+
+
+    (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=214337852466356&autoLogAppEvents=1';           
+           fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    
+
+   
+              
+       
  function testAPI() {
      console.log('Welcome to GoodTV!');
      FB.api('/me', function(response) {
-         console.log('Succesful login for: ' + response.name);
+         console.log("Succesful login for: " + response.name);
          document.getElementById('status').innerHTML =
-             'Thanks for loggin in, ' + response.name + '!';
+             "Thanks for logging in, " + response.name + "!";
      });
  };
         
     </script>
-        <fb: login-button scope="public_profile,email" 
-        onlogin="checkLoginState();">
+     <h1> GoodTV </h1>
+     <fb: login-button scope="public_profile,email" 
+        onlogin=<"checkLoginState();">
         </fb:login-button>
 
-        <div id="status">
+         <div id="status">
         </div>
-        <h1> GoodTV </h1>
-        <div class="fb-login-button" data-max-rows="2" data-size="large" data-button-type="login_with" data-show-faces="true" 
-        data-auto-logout-link="false" data-use-continue-as="false"></div>
-
-
-
-
-
-
-
-
-
-
-
+       
+        <div class="fb-login-button" data-width="100" data-max-rows="2" data-size="large" data-button-type="login_with" 
+         data-show-faces="true" data-auto-logout-link="false" data-use-continue-as="false"></div>
+        
+       
 
 <!--scripts-->
 
