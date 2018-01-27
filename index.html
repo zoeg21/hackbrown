@@ -1,3 +1,101 @@
 <!DOCTYPE html>
-<html> 
+<html lang="en">
+<head> 
+      <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!--Bootstrap--> 
+   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!--Custom CSS--> 
+   <link href="styles.css" rel="stylesheet"> 
+
+    </head> 
+    <body>
+    <script>
+        //call this function with results from FB.getLoginStatus()
+        function statusChangeCallback(response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+            //response object has status field w/ login status
+
+            if(response.status === 'connected') {
+               testAPI();
+            }
+            else {
+               //they're aren't logged in
+               document.getElementById('status').innerHTML = 'Please log in.';
+            }
+        }
+        //function called when person is done w/ login button
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+        }
+     window.fbAsyncInit = function() {
+          FB.init({
+             appId            : '214337852466356',
+             cookie           : true, //enables cookies for session
+             autoLogAppEvents : true,
+             xfbml            : true,
+             version          : 'v2.11'
+           });
+        
+     FB.getLoginStatus(function(response) {
+         statusChangeCAllback(response);
+     });
+};
+
+  (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "https://connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+
+ function testAPI() {
+     console.log('Welcome to GoodTV!');
+     FB.api('/me', function(response) {
+         console.log('Succesful login for: ' + response.name);
+         document.getElementById('status').innerHTML =
+             'Thanks for loggin in, ' + response.name + '!';
+     });
+ };
+        
+    </script>
+        <h1> GoodTV </h1>
+        <fb: login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+
+        <div id="status">
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+<!--scripts-->
+
+       <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+       <script>
+        // Initialize Firebase
+          var config = {
+                    apiKey: "AIzaSyCY6ZCSXKoGP5iiIwWriZSNQiQj3wxZ6LU",
+                    authDomain: "goodtv-b8160.firebaseapp.com",
+                    databaseURL: "https://goodtv-b8160.firebaseio.com",
+                    projectId: "goodtv-b8160",
+                    storageBucket: "",
+                    messagingSenderId: "757870775906"
+                                                                          };
+                   firebase.initializeApp(config);
+                </script>
+                <script src="script.js"></script> 
+</body>  
 </html> 
+
