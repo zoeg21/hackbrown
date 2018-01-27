@@ -28,7 +28,7 @@
                document.getElementById('status').innerHTML = "Please log in.";
             }
         }
-        //function called when person is done w/ login button
+        function called when person is done w/ login button
         function checkLoginState() {
             FB.getLoginStatus(function(response) {
                 statusChangeCallback(response);
@@ -113,8 +113,8 @@
            var email = error.email;
            var credential = error.credential;
        });
-       firebase.auth().onAuthStateChanged(function(user) {
-           if(user) {
+      // firebase.auth().onAuthStateChanged(function(user) {
+        //   if(user) {
 
 
 
