@@ -8,24 +8,20 @@
 //redirect to search.html, parse JSON and display search results 
 
 
-function successSearch(){
-	console.log("success");
-}
-
 function errorSearch(){
 	console.log("failure");
 }
 
-
 function tvSearch(query){
 	theMovieDb.search.getTv({'query': query}, function(result){
+		var container = document.createElement('div');
+		var paragraph = document.createElement('p');
+		container.appendChild(paragraph);
+		var paragraphText = document.createTextNode(result);
+		paragraph.appendChild(paragraphText);
+
 		console.log(result);
 	}, error);
-	//console.log(response);
-	/*$.ajax({
-		url: 
-	})*/
-
 }
 
 
@@ -37,12 +33,13 @@ window.onload = function(){
 	var form = document.getElementById('searchForm');
 	form.addEventListener('submit', function(e){
 		e.preventDefault();
-
-		//get input text
 		var input = form.elements[0].value; 
-		window.location.href="search.html"
+		//redirect to search results page 
+		window.location.href="search.html";
+
+		//display results 
 		tvSearch(input); 
-		console.log(input);
-		//console.log('submitted');
+		//console.log(input);
+		console.log('submitted');
 	})
 }
