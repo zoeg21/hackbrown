@@ -33,16 +33,15 @@
          <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-        	<ul class="navbar-nav ml-auto">
-        	 <li id="search"> 
-        	 	<input type="text" placeholder="Search for a Show"> </li> 
-        	 	<li> <button type="submit"> Submit </button> 
-        	</li> 
+        	<form id="searchForm"> 
+	        	<ul class="navbar-nav ml-auto">
+	        	 <li id="search"> <input type="text" placeholder="Search for a Show"> </li> 
+	        	 	<li> <button type="submit" id="searchSubmit"> Submit </button>
+	        	</li> 
+       	 </form> 
         	</ul> 
 <!--          <ul class="navbar-nav ml-auto">
-            <li>--> 
-            	
-            
+            <li>-->    
         </div>
       </div>
    </nav>
@@ -142,6 +141,7 @@
 	  };
 	  firebase.initializeApp(config);
 	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script src="themoviedb.js"></script>
 	<script src="script.js"></script>
 
