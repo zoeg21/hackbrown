@@ -19,7 +19,7 @@
             console.log(response);
             //response object has status field w/ login status
 
-            if(response.status === 'connected') {
+            if(response.status === 'connected'||response.status==='unknown') {
                window.location = "https://zoeg21.github.io/hackbrown/home.html"
                 testAPI();
             }
