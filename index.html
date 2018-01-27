@@ -19,7 +19,7 @@
             console.log(response);
             //response object has status field w/ login status
 
-            if(response.status === 'connected'||response.status==='unknown') {
+            if(response.status === 'connected') {
                window.location = "https://zoeg21.github.io/hackbrown/home.html"
                 testAPI();
             }
@@ -100,6 +100,22 @@
                    firebase.initializeApp(config);
                 </script>
                 <script src="script.js"></script> 
+       <script>
+       var provider = new firebase.auth.FacebookAuthProvider();
+       firebase.auth().signInWithPopup(provider).then(function(result)
+               {
+                   var token = result.credential.accessToken;
+                   var user = result.user;
+               }).catch(function(error) {
+           var errorCode = error.code;
+           var errorMessage = error.messge;
+
+           var email = error.email;
+           var credential = error.credential;
+       });
+
+
+       
 </body>  
 </html> 
 
