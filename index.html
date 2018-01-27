@@ -88,6 +88,7 @@
 
        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
        <script>
+        console.log('hello');
         // Initialize Firebase
           var config = {
                     apiKey: "AIzaSyCY6ZCSXKoGP5iiIwWriZSNQiQj3wxZ6LU",
@@ -102,10 +103,15 @@
                 <script src="script.js"></script> 
        <script>
        var provider = new firebase.auth.FacebookAuthProvider();
-       firebase.auth().signInWithPopup(provider).then(function(result)
+       console.log(provider);
+       firebase.auth().signInWithRedirect(provider);
+       firebase.auth().getRedirectResult().then(function(result)
+    //   firebase.auth().signInWithPopup(provider).then(function(result)
                {
-                   var token = result.credential.accessToken;
-                   var user = result.user;
+                   if(result.credential) {
+                        var token = result.credential.accessToken;
+                   }
+               var user = result.user;
                }).catch(function(error) {
            var errorCode = error.code;
            var errorMessage = error.messge;
