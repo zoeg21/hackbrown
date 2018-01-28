@@ -123,11 +123,14 @@
                firebase.auth().onAuthStateChanged(user =>{
            if(user) {
                var userId = firebase.auth().currentUser.uid;
-
-               var ref = firebase.database().ref();
-               var store = ref.child('user');
-               var newRef = store.push();
-               newRef.set({user: userId});
+               var users = firebase.database().ref("users"); 
+               var user = { name: userId, name: 'Eleanor' }; 
+               users.push(user); 
+              // firebase.database().ref().child("users").set({user: userId});
+             //  var ref = firebase.database().ref();
+             //  var store = ref.child('user');
+           //    var newRef = store.push();
+          //     newRef.set({user: userId});
                               
              //  var userKey= firebase.database().ref().child('users').push().key;
             //   var logUser = {};
