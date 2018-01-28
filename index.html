@@ -123,7 +123,7 @@
                firebase.auth().onAuthStateChanged(user =>{
            if(user) {
                var userId = firebase.auth().currentUser.uid;    
-               var userKey=database().ref().child('users').push().key;
+               var userKey= firebase.database().ref().child('users').push().key;
                var logUser = {};
                logUser['/users/' + userKey] = userId;
                firebase.database().ref().update(logUser);
