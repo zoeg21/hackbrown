@@ -7,20 +7,85 @@
 //input the information into the movieDb API 
 //redirect to search.html, parse JSON and display search results 
 
+var imageURL = 'http://image.tmdb.org/t/p/w500//';
 
 function errorSearch(){
 	console.log("failure");
 }
 
-function tvSearch(query){
-	theMovieDb.search.getTv({'query': query}, function(result){
-		var container = document.createElement('div');
-		var paragraph = document.createElement('p');
-		container.appendChild(paragraph);
-		var paragraphText = document.createTextNode(result);
-		paragraph.appendChild(paragraphText);
+//create section to display results 
+//add results to that section 
 
-		console.log(result);
+function createSearchResult(name, poster, description){
+	//use cards from bootstrap
+	var card = document.createElement('div');
+	card.setAttribute('class', 'card'); 
+	card.setAttribute('style', 'width: 20rem; display: inline-block; background-color: #D3D3D3;');
+
+	/* create poster element*/	
+	var showPoster = document.createElement('img');
+	showPoster.setAttribute('class', 'card-img-top'); 
+	var posterSource = imageURL + poster; 
+	showPoster.setAttribute('src', posterSource);
+	showPoster.setAttribute('style', 'max-height: 200px; max-width: 200px; margin-left: auto; margin-right: auto; display: block;'); 
+	
+	
+	/*create name element*/
+	var contentContainer = document.createElement('div');
+	var cardTitle = document.createElement('h4');
+	var cardTitleText = document.createTextNode(name);
+	cardTitle.appendChild(cardTitleText);
+	cardTitle.setAttribute('class', 'card-title');
+	contentContainer.appendChild(cardTitle);
+	contentContainer.setAttribute('class', 'card-block');
+
+	/*create overview element*/
+	var overview = document.createElement('p');
+	overview.setAttribute('class', 'card-text');
+	var descriptionShort = description.substring(0, 150);
+	descriptionShort = descriptionShort + "...";
+	var descriptionText = document.createTextNode(descriptionShort);
+	overview.appendChild(descriptionText);
+	contentContainer.appendChild(overview);
+	if(poster != null){
+		card.appendChild(showPoster);
+	}
+	
+	card.appendChild(contentContainer);
+	return card; 
+}
+
+function tvSearch(query){
+	theMovieDb.search.getTv({'query': query}, function(data){
+		//need to delete previous search results 
+		data = JSON.parse(data);
+		var slider = document.getElementById('lightSlider');
+		/*var section = document.getElementById('myshows');
+		var container = document.createElement('div');*/
+		console.log(data);
+		if(data.hasOwnProperty("results") && data.results.length > 0){
+			for(var i = 0; i <  data.results.length; i++){
+				var name = data.results[i]["name"]; 
+				var poster = data.results[i]["poster_path"];
+				var description = data.results[i]["overview"];
+				//console.log(description);
+				var card = createSearchResult(name, poster, description);
+				var listItem = document.createElement('li');
+				listItem.appendChild(card);
+				$(slider).append(listItem);
+				//console.log('appened to slider');
+			}
+		}
+		$("#lightSlider").lightSlider({
+			item:4,
+	        loop:false,
+	        slideMove:2,
+	        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+	        speed:600,
+		});
+			
+
+		//$(section).prepend(container);
 	}, error);
 }
 
@@ -30,16 +95,27 @@ function error(){
 }
 
 window.onload = function(){
+	$("#lightSlider").lightSlider({
+		item:4,
+        loop:false,
+        slideMove:2,
+        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+        speed:600,
+	}); 
+	
 	var form = document.getElementById('searchForm');
 	form.addEventListener('submit', function(e){
 		e.preventDefault();
 		var input = form.elements[0].value; 
 		//redirect to search results page 
-		window.location.href="search.html";
+		
 
 		//display results 
+		//window.location.href="search.html";
 		tvSearch(input); 
+		
 		//console.log(input);
 		console.log('submitted');
+		
 	})
 }

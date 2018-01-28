@@ -3,9 +3,9 @@ header.masthead{
 	background: none !important;
 }
 
-#myshows{
+/*#myshows{
 	padding-top: calc(3rem + 72px);
-}
+}*/
 .show{
 	display: inline-block;
 }
@@ -14,6 +14,10 @@ header.masthead{
 	padding-top: calc(3rem + 72px);
 
 }
+
+/*#lightSlider{
+	padding-top: calc(3rem + 72px);
+}*/
 
 input[type=text]{
 	float: right;
