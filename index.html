@@ -122,11 +122,17 @@
        });
                firebase.auth().onAuthStateChanged(user =>{
            if(user) {
-               var userId = firebase.auth().currentUser.uid;    
-               var userKey= firebase.database().ref().child('users').push().key;
-               var logUser = {};
-               logUser['/users/' + userKey] = userId;
-               firebase.database().ref().update(logUser);
+               var userId = firebase.auth().currentUser.uid;
+
+               var ref = firebase.database().ref();
+               var store = ref.child('user');
+               var newRef = store.push();
+               newRef.set({user: userId});
+                              
+             //  var userKey= firebase.database().ref().child('users').push().key;
+            //   var logUser = {};
+            //   logUser['/users/' + userKey] = userId;
+           //    firebase.database().ref().update(logUser);
                window.location = "https://zoeg21.github.io/hackbrown/home.html";
            }
        });
