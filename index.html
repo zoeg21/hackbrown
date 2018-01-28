@@ -13,62 +13,7 @@
     <body>
         <div id ="fb-root"></div>
         <script>
-  //call this function with results from FB.getLoginStatus()
-        /* function statusChangeCallback(response) {
-            console.log('statusChangeCallback');
-            console.log(response);
-            //response object has status field w/ login status
-
-            if(response.status === 'connected') {
-               window.location = "https://zoeg21.github.io/hackbrown/home.html"
-                testAPI();
-            }
-            else {
-               
-               document.getElementById('status').innerHTML = "Please log in.";
-            }
-        }
-        function called when person is done w/ login button
-        function checkLoginState() {
-            FB.getLoginStatus(function(response) {
-                statusChangeCallback(response);
-            });
-        }
-     window.fbAsyncInit = function() {
-          FB.init({
-             appId            : '214337852466356',
-             cookie           : true, //enables cookies for session
-             autoLogAppEvents : true,
-             xfbml            : true,
-             version          : 'v2.11'
-           });
-      FB.getLoginStatus(function(response) {
-         statusChangeCallback(response);
-     });
-   };
-
-
-
-    (function(d, s, id){
-           var js, fjs = d.getElementsByTagName(s)[0];
-           if (d.getElementById(id)) {return;}
-           js = d.createElement(s); js.id = id;
-           js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=214337852466356&autoLogAppEvents=1';           
-           fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    
-
-   
-              
-       
- function testAPI() {
-     console.log('Welcome to GoodTV!');
-     FB.api('/me', function(response) {
-         console.log("Succesful login for: " + response.name);
-         document.getElementById('status').innerHTML =
-             "Thanks for logging in, " + response.name + "!";
-     });
- };*/
+ 
         
     </script>
      <h1> GoodTV </h1>
@@ -85,9 +30,12 @@
        
 
 <!--scripts-->
-
+		<script src="script.js"></script> 
        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
        <script>
+       	function sleep (time) {
+  		return new Promise((resolve) => setTimeout(resolve, time));
+	}
         console.log('hello');
         // Initialize Firebase
           var config = {
@@ -99,31 +47,73 @@
                     messagingSenderId: "757870775906"
                                                                           };
                    firebase.initializeApp(config);
-                </script>
-                <script src="script.js"></script> 
-       <script>
+                
+               
+      
        var provider = new firebase.auth.FacebookAuthProvider();
        console.log(provider);
       // firebase.auth().signInWithRedirect(provider);
       // firebase.auth().getRedirectResult().then(function(result)
-       firebase.auth().signInWithPopup(provider).then(function(result)
-               {
-                 //  if(result.credential) {
-                        var token = result.credential.accessToken;
-                 //  }
-               var user = result.user;
-               }).catch(function(error) {
+       firebase.auth().signInWithPopup(provider).then(function(result){
+        	var token = result.credential.accessToken;
+            var user = result.user;
+            var database = firebase.database();
+      	}).catch(function(error) {
            var errorCode = error.code;
            var errorMessage = error.messge;
 
            var email = error.email;
            var credential = error.credential;
        });
-               firebase.auth().onAuthStateChanged(user =>{
+
+      firebase.auth().onAuthStateChanged(function(user){
+      	if(user){
+      		//user is signed in 
+      		  var ref = firebase.database().ref('users');
+      		  //var usersChild = ref.child('users');
+		      var userId = firebase.auth().currentUser.uid; 
+		     // usersChild.once('name', function(snapshot)
+		      //{
+		      	if(ref.child(userId)==null)
+		      	{
+		      		var user = {'name': userId};
+		      		ref.push(user);
+		      	}
+
+
+		     // });  
+      		console.log("user is signed in -- heck ya");
+      		sleep(2000).then(()=>
+      		{window.location = "https://zoeg21.github.io/hackbrown/home.html";});
+      	}else{
+      		//user is not signed in 
+      		console.log("user is not signed in -- uh oh");
+      	}
+      });
+     
+ 	
+
+/*
+       firebase.auth().onAuthStateChanged(user =>{
            if(user) {
-                   window.location = "https://zoeg21.github.io/hackbrown/home.html";
+               var userId = firebase.auth().currentUser.uid;
+               var users = firebase.database().ref("users"); 
+               var user = { name: userId, name: 'Eleanor' }; 
+               users.push(user); 
+              // firebase.database().ref().child("users").set({user: userId});
+             //  var ref = firebase.database().ref();
+             //  var store = ref.child('user');
+           //    var newRef = store.push();
+          //     newRef.set({user: userId});
+                              
+             //  var userKey= firebase.database().ref().child('users').push().key;
+            //   var logUser = {};
+            //   logUser['/users/' + userKey] = userId;
+           //    firebase.database().ref().update(logUser);
+               window.location = "https://zoeg21.github.io/hackbrown/home.html";
            }
-       });
+       });*/
+        
 
 
 
