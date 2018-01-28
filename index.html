@@ -30,7 +30,7 @@
        
 
 <!--scripts-->
-
+		<script src="script.js"></script> 
        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
        <script>
         console.log('hello');
@@ -44,9 +44,9 @@
                     messagingSenderId: "757870775906"
                                                                           };
                    firebase.initializeApp(config);
-                </script>
-                <script src="script.js"></script> 
-       <script>
+                
+               
+      
        var provider = new firebase.auth.FacebookAuthProvider();
        console.log(provider);
       // firebase.auth().signInWithRedirect(provider);
@@ -66,7 +66,7 @@
       firebase.auth().onAuthStateChanged(function(user){
       	if(user){
       		//user is signed in 
-      		 var ref = firebase.database().ref('user');
+      		  var ref = firebase.database().ref('users');
 		      var userId = firebase.auth().currentUser.uid; 
 		      var user = {"name": userId};
 		      ref.push(user);
@@ -76,7 +76,7 @@
       		//user is not signed in 
       		console.log("user is not signed in -- uh oh");
       	}
-      })
+      });
      
  	
 
