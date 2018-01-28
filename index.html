@@ -78,16 +78,18 @@
 		      //{
 		      	if(ref.child(userId))
 		      	{
-		      		console.log('ur old!');
+		      		var user = userId; 
+		      		//var user = {'name': userId};
+		      		ref.push(user);
+
 		      		
 		      		
 		      	}
 		      	else
 		      	{
-		      		var user = userId; 
-		      		//var user = {'name': userId};
-		      		ref.push(user);
+		      		console.log('ur old!');
 		      		
+
 
 
 		      	}
