@@ -70,7 +70,7 @@
       	if(user){
       		//user is signed in 
       		  var ref = firebase.database().ref('users');
-      		  var usersChild = ref.child();
+      		  var usersChild = ref.child('users');
 		      var userId = firebase.auth().currentUser.uid; 
 		      usersRef.once('value', function(snapshot)
 		      {
