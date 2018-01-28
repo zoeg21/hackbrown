@@ -74,11 +74,16 @@
 		      var userId = firebase.auth().currentUser.uid; 
 		     // usersChild.once('name', function(snapshot)
 		      //{
-		      	if(ref.child(userId)==null)
+		      	if(ref.child(userId))
 		      	{
-		      		console.log('u already exist!');
+		      		console.log('ur old!');
+		      		
+		      	}
+		      	else
+		      	{
 		      		var user = {'name': userId};
 		      		ref.push(user);
+
 		      	}
 
 
@@ -86,7 +91,8 @@
       		console.log("user is signed in -- heck ya");
       		sleep(2000).then(()=>
       		{});//window.location = "https://zoeg21.github.io/hackbrown/home.html";});
-      	}else{
+      	}
+      	else{
       		//user is not signed in 
       		console.log("user is not signed in -- uh oh");
       	}
