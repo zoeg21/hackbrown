@@ -15,9 +15,6 @@ header.masthead{
 
 }
 
-/*#lightSlider{
-	padding-top: calc(3rem + 72px);
-}*/
 
 input[type=text]{
 	float: right;
@@ -30,4 +27,8 @@ input[type=text]{
 
 #search{
 	display: inline-block;
+}
+
+.card{
+	border: solid 4px #A9A9A9;
 }

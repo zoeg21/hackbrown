@@ -16,6 +16,15 @@ function errorSearch(){
 //create section to display results 
 //add results to that section 
 
+function deleteSearchResults(){
+	console.log('deleting');
+	var container = document.getElementById('lightSlider');
+	$('div').remove('.lSSlideOuter');
+	var slider = document.createElement('ul');
+	slider.setAttribute('id', 'lightSlider');
+	$(slider).insertAfter('#padding');
+}
+
 function createSearchResult(name, poster, description){
 	//use cards from bootstrap
 	var card = document.createElement('div');
@@ -59,6 +68,14 @@ function tvSearch(query){
 	theMovieDb.search.getTv({'query': query}, function(data){
 		//need to delete previous search results 
 		data = JSON.parse(data);
+
+		//create slider 
+		//var slider = document.createElement('ul');
+		//slider.setAttribute('id', 'lightSlider');
+
+		//var myshows = document.getElementById('myshows');
+		
+
 		var slider = document.getElementById('lightSlider');
 		/*var section = document.getElementById('myshows');
 		var container = document.createElement('div');*/
@@ -76,6 +93,13 @@ function tvSearch(query){
 				//console.log('appened to slider');
 			}
 		}
+		/*slider.lightSlider{
+			item:4,
+	        loop:false,
+	        slideMove:2,
+	        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+	        speed:600,
+		}*/
 		$("#lightSlider").lightSlider({
 			item:4,
 	        loop:false,
@@ -84,6 +108,7 @@ function tvSearch(query){
 	        speed:600,
 		});
 			
+			//$(slider).insertAfter('#padding');
 
 		//$(section).prepend(container);
 	}, error);
@@ -95,20 +120,19 @@ function error(){
 }
 
 window.onload = function(){
-	$("#lightSlider").lightSlider({
+	/*$("#lightSlider").lightSlider({
 		item:4,
         loop:false,
         slideMove:2,
         easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
         speed:600,
-	}); 
+	}); */
 	
 	var form = document.getElementById('searchForm');
 	form.addEventListener('submit', function(e){
+		deleteSearchResults();
 		e.preventDefault();
-		var input = form.elements[0].value; 
-		//redirect to search results page 
-		
+		var input = form.elements[0].value; 		
 
 		//display results 
 		//window.location.href="search.html";
