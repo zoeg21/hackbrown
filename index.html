@@ -69,12 +69,13 @@
       firebase.auth().onAuthStateChanged(function(user){
       	if(user){
       		//user is signed in 
-      		  var ref = firebase.database().ref('users');
+      		  var ref = firebase.database().ref("users");
+      		  var refChild = ref.child(userId);
       		  //var usersChild = ref.child('users');
 		      var userId = firebase.auth().currentUser.uid; 
 		     // usersChild.once('name', function(snapshot)
 		      //{
-		      	if(ref.child(userId))
+		      	if(refChild.child("name"))
 		      	{
 		      		console.log('ur old!');
 		      		
