@@ -72,11 +72,11 @@
       		  var ref = firebase.database().ref('users');
       		  var usersChild = ref.child('users');
 		      var userId = firebase.auth().currentUser.uid; 
-		      usersChild.once('value', function(snapshot)
+		      usersChild.once('name', function(snapshot)
 		      {
 		      	if(!(snapshot.hasChild(userId)))
 		      	{
-		      		var user = {"name": userId};
+		      		var user = {'name': userId};
 		      		ref.push(user);
 		      	}
 
