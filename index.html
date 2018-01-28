@@ -51,21 +51,34 @@
        console.log(provider);
       // firebase.auth().signInWithRedirect(provider);
       // firebase.auth().getRedirectResult().then(function(result)
-       firebase.auth().signInWithPopup(provider).then(function(result)
-               {
+       firebase.auth().signInWithPopup(provider).then(function(result){
                  //  if(result.credential) {
-                        var token = result.credential.accessToken;
+        	var token = result.credential.accessToken;
                  //  }
-               var user = result.user;
-               var database = firebase.database();
-               }).catch(function(error) {
+            var user = result.user;
+            var database = firebase.database();
+      	}).catch(function(error) {
            var errorCode = error.code;
            var errorMessage = error.messge;
 
            var email = error.email;
            var credential = error.credential;
        });
-               firebase.auth().onAuthStateChanged(user =>{
+
+      var ref = new Firebase("https://goodtv-b8160.firebaseio.com/"); 
+      ref.onAuth(function(authData){
+      	if(authData){
+      		ref.child(authData.uid).set({
+      			provider: authData.provider, 
+      			uid: authData.uid
+      		})
+      	}
+
+      })
+ 	 window.location = "https://zoeg21.github.io/hackbrown/home.html";
+
+/*
+       firebase.auth().onAuthStateChanged(user =>{
            if(user) {
                var userId = firebase.auth().currentUser.uid;
                var users = firebase.database().ref("users"); 
@@ -83,7 +96,7 @@
            //    firebase.database().ref().update(logUser);
                window.location = "https://zoeg21.github.io/hackbrown/home.html";
            }
-       });
+       });*/
         
 
 
