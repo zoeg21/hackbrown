@@ -33,6 +33,9 @@
 		<script src="script.js"></script> 
        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
        <script>
+       	function sleep (time) {
+  		return new Promise((resolve) => setTimeout(resolve, time));
+	}
         console.log('hello');
         // Initialize Firebase
           var config = {
@@ -71,8 +74,8 @@
 		      var user = {"name": userId};
 		      ref.push(user);
       		console.log("user is signed in -- heck ya");
-      		await sleep(2000);
-      		window.location = "https://zoeg21.github.io/hackbrown/home.html";
+      		sleep(2000).then(()=>
+      		{window.location = "https://zoeg21.github.io/hackbrown/home.html";});
       	}else{
       		//user is not signed in 
       		console.log("user is not signed in -- uh oh");
