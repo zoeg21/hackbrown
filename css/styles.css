@@ -31,3 +31,12 @@ input[type=text]{
 #search{
 	display: inline-block;
 }
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Corben', Georgia, Times, serif;
+}
+p, div {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+}
+body {
+	background: url(/Downloads/memphis-colorful/memphis-colorful.png) repeat 0 0;
+}
