@@ -15,9 +15,6 @@ header.masthead{
 
 }
 
-/*#lightSlider{
-	padding-top: calc(3rem + 72px);
-}*/
 
 input[type=text]{
 	float: right;
@@ -31,14 +28,19 @@ input[type=text]{
 #search{
 	display: inline-block;
 }
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Corben', Georgia, Times, serif;
 }
 p, div {
     font-family: 'Nobile', Helvetica, Arial, sans-serif;
 }
+
 body {
 	background-image: url("img/memphis-colorful.png");
 	background-repeat: 0 0;
-	
+}
+
+.card{
+	border: solid 4px #A9A9A9;
 }
