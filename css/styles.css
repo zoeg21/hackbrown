@@ -38,5 +38,7 @@ p, div {
     font-family: 'Nobile', Helvetica, Arial, sans-serif;
 }
 body {
-	background: src =img/memphis-colorful.png;
+	background-image: url("img/memphis-colorful.png");
+	background-repeat: 0 0;
+	
 }
