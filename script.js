@@ -38,7 +38,6 @@ function createSearchResult(name, poster, description){
 	showPoster.setAttribute('src', posterSource);
 	showPoster.setAttribute('style', 'max-height: 200px; max-width: 200px; margin-left: auto; margin-right: auto; display: block;'); 
 	
-	
 	/*create name element*/
 	var contentContainer = document.createElement('div');
 	var cardTitle = document.createElement('h4');
@@ -47,6 +46,15 @@ function createSearchResult(name, poster, description){
 	cardTitle.setAttribute('class', 'card-title');
 	contentContainer.appendChild(cardTitle);
 	contentContainer.setAttribute('class', 'card-block');
+
+	/*create add button*/
+	var add = document.createElement('button');
+	add.innerHTML = "Add";
+	/*create event listener for add button*/ 
+	$(add).click(function(){
+		console.log('clicked' + name);
+	})
+	contentContainer.appendChild(add);
 
 	/*create overview element*/
 	var overview = document.createElement('p');
@@ -68,18 +76,7 @@ function tvSearch(query){
 	theMovieDb.search.getTv({'query': query}, function(data){
 		//need to delete previous search results 
 		data = JSON.parse(data);
-
-		//create slider 
-		//var slider = document.createElement('ul');
-		//slider.setAttribute('id', 'lightSlider');
-
-		//var myshows = document.getElementById('myshows');
-		
-
 		var slider = document.getElementById('lightSlider');
-		/*var section = document.getElementById('myshows');
-		var container = document.createElement('div');*/
-		console.log(data);
 		if(data.hasOwnProperty("results") && data.results.length > 0){
 			for(var i = 0; i <  data.results.length; i++){
 				var name = data.results[i]["name"]; 
@@ -87,19 +84,18 @@ function tvSearch(query){
 				var description = data.results[i]["overview"];
 				//console.log(description);
 				var card = createSearchResult(name, poster, description);
+				/*$(card).mouseenter(function(){
+					$(this).css("background-color", "#514C4C");
+				});
+				$(card).mouseleave(function(){
+					$(this).css("background-color", "#D3D3D3");
+				});*/
 				var listItem = document.createElement('li');
 				listItem.appendChild(card);
 				$(slider).append(listItem);
-				//console.log('appened to slider');
 			}
 		}
-		/*slider.lightSlider{
-			item:4,
-	        loop:false,
-	        slideMove:2,
-	        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
-	        speed:600,
-		}*/
+
 		$("#lightSlider").lightSlider({
 			item:4,
 	        loop:false,
@@ -107,12 +103,12 @@ function tvSearch(query){
 	        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
 	        speed:600,
 		});
-			
-			//$(slider).insertAfter('#padding');
-
-		//$(section).prepend(container);
 	}, error);
 }
+
+//add event listeners to all tv cards -- on click and on hover 
+
+
 
 
 function error(){
@@ -120,13 +116,6 @@ function error(){
 }
 
 window.onload = function(){
-	/*$("#lightSlider").lightSlider({
-		item:4,
-        loop:false,
-        slideMove:2,
-        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
-        speed:600,
-	}); */
 	
 	var form = document.getElementById('searchForm');
 	form.addEventListener('submit', function(e){
