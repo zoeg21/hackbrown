@@ -19,16 +19,19 @@
 
     <!-- Custom styles for this template -->
     <link href="css/one-page-wonder.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="lightslider/lightslider.css"/>
+
     <link href="css/styles.css" rel="stylesheet"> 
+
 
   </head>
 
   <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" id="nav">
       <div class="container">
-        <a class="navbar-brand" href="#">GoodTV</a>
+        <a class="navbar-brand" href="home.html">GoodTV</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,14 +49,11 @@
       </div>
    </nav>
 
-
-
-    <!--<header class="masthead"> 
-    	<div class=>
-	    	<h1> GoodTV </h1> 
-	    	<h2> You are Logged In </h2> 
-   	 	</div> 
-   	 </header>-->
+   <div style="padding-top: 100px;"> 
+   </div> 
+   <!-- Search Results --> 
+  <ul id="lightSlider">
+	</ul>
 
     <section class="playlist" id="myshows">
 
@@ -75,6 +75,8 @@
         </div>
       </div> 
     </section>
+
+
 
     <section class="playlist">
       <div class="container">
@@ -115,7 +117,7 @@
       </div> 
     </section>
 
-
+ 
     <!-- Footer -->
     <footer class="py-5 bg-black">
       <div class="container">
@@ -125,6 +127,8 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
+
+</script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -142,7 +146,9 @@
 	  firebase.initializeApp(config);
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="lightslider/lightslider.js"></script>
 	<script src="themoviedb.js"></script>
+				
 	<script src="script.js"></script>
 
   </body>
