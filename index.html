@@ -70,12 +70,13 @@
       	if(user){
       		//user is signed in 
       		  var ref = firebase.database().ref("users");
-      		  var refChild = ref.child(userId);
+      		 
       		  //var usersChild = ref.child('users');
-		      var userId = firebase.auth().currentUser.uid; 
+		      var userId = firebase.auth().currentUser.uid;
+		      var refChild = ref.child(userId); 
 		     // usersChild.once('name', function(snapshot)
 		      //{
-		      	if(refChild.child("name"))
+		      	if(ref.child("name"))
 		      	{
 		      		console.log('ur old!');
 		      		
